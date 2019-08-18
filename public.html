@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Public Statistic</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase.js"></script>
+</head>
+<body style="background: #f2edf3;">
+    
+
+        <div class="main-panel" style="margin-left:10%;">
+                <div class="content-wrapper">
+                    
+                 <div class="page-header">
+                        <div><a  href="index.html"> <button type="button" class="btn btn-gradient-primary"><i class="mdi mdi-arrow-left"></i> Вернуться обратно</button></a> </div>
+                    <h3 class="page-title" style="text-align: center;">
+                      Статистика
+                    </h3>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 stretch-card grid-margin">
+                      <div class="card bg-gradient-danger card-img-holder text-white">
+                        <div class="card-body">
+                          <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
+                          <h4 class="font-weight-normal mb-3">Кол-во Сотрудников
+                            <i class="mdi mdi-account-card-details"></i>
+                          </h4>
+                          <h2 class="mb-5" id="object"></h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                      <div class="card bg-gradient-info card-img-holder text-white">
+                        <div class="card-body">
+                          <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
+                          <h4 class="font-weight-normal mb-3">Кол-во Комментов
+                            <i class="mdi mdi-comment-text-outline"></i>
+                          </h4>
+                          <h2 class="mb-5" id="comment"></h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                      <div class="card bg-gradient-success card-img-holder text-white">
+                        <div class="card-body">
+                          <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+                          <h4 class="font-weight-normal mb-3">Код :
+                            <i class="mdi mdi-barcode-scan" style="margin-left: 15px;"></i>
+                          </h4>
+                          <h2 class="mb-5" id="code"></h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="clearfix">
+                            <h4 class="card-title float-left">Настроений Сотрудников за последнюю неделю</h4>
+                            <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>                                     
+                          </div>
+                          <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-5 grid-margin stretch-card">
+                      <div class="card">
+                        
+                        <div class="card-body">
+                          <h4 class="card-title" style="text-align: center;">Настроение Сотрудников Сегодня</h4>
+                          <canvas id="chart" width="400" height="400"></canvas>
+                          <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>                                                      
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        <div class="template-demo mt-2" style="margin-bottom: 20px; text-align: center;">
+                <button class="btn btn-outline-dark btn-icon-text">
+                  <i class="mdi mdi-apple btn-icon-prepend mdi-36px"></i>
+                  <span class="d-inline-block text-left">
+                    <small class="font-weight-light d-block">Можно скачать в</small>
+                    App Store
+                  </span>
+                </button>
+                <button class="btn btn-outline-dark btn-icon-text">
+                  <i class="mdi mdi-android-debug-bridge btn-icon-prepend mdi-36px"></i>
+                  <span class="d-inline-block text-left">
+                    <small class="font-weight-light d-block">Можно скачать в</small>
+                    Google Play
+                  </span>
+                </button>
+              </div>
+              
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Alfa Bank © 2019</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">С любовью Method Pro ;) <i class="mdi mdi-heart text-danger"></i></span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+      <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <script src="js/chart.js"></script>
+  <!-- End custom js for this page-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Add Firebase products that you want to use -->
+<script src="node_modules/moment/min/moment.min.js"></script>
+<script>
+
+var firebaseConfig = {
+    apiKey: "AIzaSyABQone9FZrj8WlXoGCypEhU9WReO_PPOc",
+    authDomain: "alphamood-842eb.firebaseapp.com",
+    databaseURL: "https://alphamood-842eb.firebaseio.com",
+    projectId: "alphamood-842eb",
+    storageBucket: "alphamood-842eb.appspot.com",
+    messagingSenderId: "527194776177"
+    };
+    firebase.initializeApp(firebaseConfig);
+    ///////////////////////////////////КОД:///////////////////////////////////////
+    var preObjectCode = document.getElementById('code');
+    var dbRefObjectCode=firebase.database().ref().child('Security');
+    var dbRefObjectCodeId = dbRefObjectCode.child('Code');
+    dbRefObjectCodeId.on('value',snap => preObjectCode.innerText = snap.val());
+    ///////////////////////////количество комментов////////////////////////////////
+    var preObjectComId = document.getElementById('comment');
+    var dbRefObjectCom=firebase.database().ref().child('Tue Aug 06 2019');
+    var dbRefObjectComment = dbRefObjectCom.child('Comments');
+    dbRefObjectComment.on('value',snap => preObjectComId.innerText = snap.val());
+    ///////////////////////////////////////////////////////////////////////////////
+       ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////количество сотрудников/////////////////////////////
+    console.log();
+    var preObject = document.getElementById('object');
+    var dbRefObject=firebase.database().ref().child('limits');
+    var dbRefObject3 = dbRefObject.child('num');
+    dbRefObject3.on('value',snap => preObject.innerText = snap.val());
+    //////////////////////////////////////////////////////////////////////////////
+    var day =(moment().format('ddd MMM DD YYYY'));
+    console.log(moment().format('ddd MMM DD YYYY'));
+    firebase.database().ref(day).child("Bad").on('value', function(ss) {
+          var x2 = ss.val();
+          firebase.database().ref(day).child("Medium").on('value',function(ss1){
+            var x3 = ss1.val();
+            firebase.database().ref(day).child("Good").on('value',function(ss2){
+            var x1 = ss2.val();
+            var ctx =document.getElementById("chart");
+            var myChart= new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                labels: ["Плохое", "Среднее", "Хорошее"],
+                datasets: [{
+                  label: "Population (millions)",
+                  backgroundColor: ["#F53134", "#D6DB32","#67ED42"],
+                  data: [x2,x3,x1]
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                }
+              }
+            });
+          });
+        });
+     });
+    
+</script>
+</body>
+</html>
